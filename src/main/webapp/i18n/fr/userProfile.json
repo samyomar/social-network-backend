@@ -1,0 +1,34 @@
+{
+  "socialNetworkBackendApp": {
+    "userProfile": {
+      "home": {
+        "title": "UserProfiles",
+        "createLabel": "Créer un nouveau User Profile",
+        "createOrEditLabel": "Créer ou éditer un User Profile",
+        "notFound": "Aucun User Profile trouvé"
+      },
+      "created": "Un nouveau User Profile a été créé avec l'identifiant {{ param }}",
+      "updated": "Le User Profile avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le User Profile avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le User Profile {{ id }} ?"
+      },
+      "detail": {
+        "title": "User Profile"
+      },
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "age": "Age",
+      "gender": "Gender",
+      "country": "Country",
+      "nativeLang": "Native Lang",
+      "user": "User",
+      "followings": "Followings",
+      "followers": "Followers",
+      "posts": "Posts",
+      "photos": "Photos",
+      "following2": "Following 2",
+      "follower2": "Follower 2"
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "socialNetworkBackendApp": {
+    "profilePhotos": {
+      "home": {
+        "title": "ProfilePhotos",
+        "createLabel": "Créer un nouveau Profile Photos",
+        "createOrEditLabel": "Créer ou éditer un Profile Photos",
+        "notFound": "Aucun Profile Photos trouvé"
+      },
+      "created": "Un nouveau Profile Photos a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Profile Photos avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Profile Photos avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Profile Photos {{ id }} ?"
+      },
+      "detail": {
+        "title": "Profile Photos"
+      },
+      "image": "Image",
+      "uploadedDate": "Uploaded Date",
+      "title": "Title",
+      "userProfile": "User Profile"
+    }
+  }
+}

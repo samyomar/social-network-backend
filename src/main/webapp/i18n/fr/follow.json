@@ -1,0 +1,24 @@
+{
+  "socialNetworkBackendApp": {
+    "follow": {
+      "home": {
+        "title": "Follows",
+        "createLabel": "Créer un nouveau Follow",
+        "createOrEditLabel": "Créer ou éditer un Follow",
+        "notFound": "Aucun Follow trouvé"
+      },
+      "created": "Un nouveau Follow a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Follow avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Follow avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Follow {{ id }} ?"
+      },
+      "detail": {
+        "title": "Follow"
+      },
+      "followDate": "Follow Date",
+      "userProfile": "User Profile",
+      "follower": "Follower"
+    }
+  }
+}

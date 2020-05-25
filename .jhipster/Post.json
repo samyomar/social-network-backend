@@ -1,0 +1,36 @@
+{
+  "name": "Post",
+  "fields": [
+    {
+      "fieldName": "postDate",
+      "fieldType": "Instant",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "postContent",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "userProfile",
+      "otherEntityRelationshipName": "posts",
+      "relationshipValidateRules": "required",
+      "relationshipName": "userProfile",
+      "otherEntityField": "id"
+    }
+  ],
+  "changelogDate": "20200525225004",
+  "entityTableName": "post",
+  "dto": "no",
+  "pagination": "no",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": true,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": ["socialNetworkBackend"]
+}
