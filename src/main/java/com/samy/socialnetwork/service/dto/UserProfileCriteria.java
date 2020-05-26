@@ -86,10 +86,6 @@ public class UserProfileCriteria implements Serializable, Criteria {
 
     private LongFilter photosId;
 
-    private LongFilter following2Id;
-
-    private LongFilter follower2Id;
-
     public UserProfileCriteria() {
     }
 
@@ -106,8 +102,6 @@ public class UserProfileCriteria implements Serializable, Criteria {
         this.followersId = other.followersId == null ? null : other.followersId.copy();
         this.postsId = other.postsId == null ? null : other.postsId.copy();
         this.photosId = other.photosId == null ? null : other.photosId.copy();
-        this.following2Id = other.following2Id == null ? null : other.following2Id.copy();
-        this.follower2Id = other.follower2Id == null ? null : other.follower2Id.copy();
     }
 
     @Override
@@ -211,22 +205,6 @@ public class UserProfileCriteria implements Serializable, Criteria {
         this.photosId = photosId;
     }
 
-    public LongFilter getFollowing2Id() {
-        return following2Id;
-    }
-
-    public void setFollowing2Id(LongFilter following2Id) {
-        this.following2Id = following2Id;
-    }
-
-    public LongFilter getFollower2Id() {
-        return follower2Id;
-    }
-
-    public void setFollower2Id(LongFilter follower2Id) {
-        this.follower2Id = follower2Id;
-    }
-
 
     @Override
     public boolean equals(Object o) {
@@ -249,9 +227,7 @@ public class UserProfileCriteria implements Serializable, Criteria {
             Objects.equals(followingsId, that.followingsId) &&
             Objects.equals(followersId, that.followersId) &&
             Objects.equals(postsId, that.postsId) &&
-            Objects.equals(photosId, that.photosId) &&
-            Objects.equals(following2Id, that.following2Id) &&
-            Objects.equals(follower2Id, that.follower2Id);
+            Objects.equals(photosId, that.photosId);
     }
 
     @Override
@@ -268,9 +244,7 @@ public class UserProfileCriteria implements Serializable, Criteria {
         followingsId,
         followersId,
         postsId,
-        photosId,
-        following2Id,
-        follower2Id
+        photosId
         );
     }
 
@@ -290,8 +264,6 @@ public class UserProfileCriteria implements Serializable, Criteria {
                 (followersId != null ? "followersId=" + followersId + ", " : "") +
                 (postsId != null ? "postsId=" + postsId + ", " : "") +
                 (photosId != null ? "photosId=" + photosId + ", " : "") +
-                (following2Id != null ? "following2Id=" + following2Id + ", " : "") +
-                (follower2Id != null ? "follower2Id=" + follower2Id + ", " : "") +
             "}";
     }
 

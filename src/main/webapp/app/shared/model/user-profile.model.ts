@@ -18,8 +18,6 @@ export interface IUserProfile {
   followers?: IFollow[];
   posts?: IPost[];
   photos?: IProfilePhotos[];
-  following2s?: IUserProfile[];
-  follower2s?: IUserProfile[];
 }
 
 export const defaultValue: Readonly<IUserProfile> = {};

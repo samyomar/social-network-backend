@@ -9,7 +9,6 @@ import { IRootState } from 'app/shared/reducers';
 
 import { IUser } from 'app/shared/model/user.model';
 import { getUsers } from 'app/modules/administration/user-management/user-management.reducer';
-import { getEntities as getUserProfiles } from 'app/entities/user-profile/user-profile.reducer';
 import { getEntity, updateEntity, createEntity, reset } from './user-profile.reducer';
 import { IUserProfile } from 'app/shared/model/user-profile.model';
 import { convertDateTimeFromServer, convertDateTimeToServer, displayDefaultDateTime } from 'app/shared/util/date-utils';
@@ -18,12 +17,10 @@ import { mapIdList } from 'app/shared/util/entity-utils';
 export interface IUserProfileUpdateProps extends StateProps, DispatchProps, RouteComponentProps<{ id: string }> {}
 
 export const UserProfileUpdate = (props: IUserProfileUpdateProps) => {
-  const [idsfollowing2, setIdsfollowing2] = useState([]);
   const [userId, setUserId] = useState('0');
-  const [follower2Id, setFollower2Id] = useState('0');
   const [isNew, setIsNew] = useState(!props.match.params || !props.match.params.id);
 
-  const { userProfileEntity, users, userProfiles, loading, updating } = props;
+  const { userProfileEntity, users, loading, updating } = props;
 
   const handleClose = () => {
     props.history.push('/user-profile');
@@ -37,7 +34,6 @@ export const UserProfileUpdate = (props: IUserProfileUpdateProps) => {
     }
 
     props.getUsers();
-    props.getUserProfiles();
   }, []);
 
   useEffect(() => {
@@ -51,7 +47,6 @@ export const UserProfileUpdate = (props: IUserProfileUpdateProps) => {
       const entity = {
         ...userProfileEntity,
         ...values,
-        following2s: mapIdList(values.following2s),
       };
       entity.user = values.user;
 
@@ -190,28 +185,6 @@ export const UserProfileUpdate = (props: IUserProfileUpdateProps) => {
                   <Translate contentKey="entity.validation.required">This field is required.</Translate>
                 </AvFeedback>
               </AvGroup>
-              <AvGroup>
-                <Label for="user-profile-following2">
-                  <Translate contentKey="socialNetworkBackendApp.userProfile.following2">Following 2</Translate>
-                </Label>
-                <AvInput
-                  id="user-profile-following2"
-                  type="select"
-                  multiple
-                  className="form-control"
-                  name="following2s"
-                  value={userProfileEntity.following2s && userProfileEntity.following2s.map(e => e.id)}
-                >
-                  <option value="" key="0" />
-                  {userProfiles
-                    ? userProfiles.map(otherEntity => (
-                        <option value={otherEntity.id} key={otherEntity.id}>
-                          {otherEntity.id}
-                        </option>
-                      ))
-                    : null}
-                </AvInput>
-              </AvGroup>
               <Button tag={Link} id="cancel-save" to="/user-profile" replace color="info">
                 <FontAwesomeIcon icon="arrow-left" />
                 &nbsp;
@@ -235,7 +208,6 @@ export const UserProfileUpdate = (props: IUserProfileUpdateProps) => {
 
 const mapStateToProps = (storeState: IRootState) => ({
   users: storeState.userManagement.users,
-  userProfiles: storeState.userProfile.entities,
   userProfileEntity: storeState.userProfile.entity,
   loading: storeState.userProfile.loading,
   updating: storeState.userProfile.updating,
@@ -244,7 +216,6 @@ const mapStateToProps = (storeState: IRootState) => ({
 
 const mapDispatchToProps = {
   getUsers,
-  getUserProfiles,
   getEntity,
   updateEntity,
   createEntity,

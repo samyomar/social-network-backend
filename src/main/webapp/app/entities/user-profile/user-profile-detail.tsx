@@ -65,19 +65,6 @@ export const UserProfileDetail = (props: IUserProfileDetailProps) => {
             <Translate contentKey="socialNetworkBackendApp.userProfile.user">User</Translate>
           </dt>
           <dd>{userProfileEntity.user ? userProfileEntity.user.id : ''}</dd>
-          <dt>
-            <Translate contentKey="socialNetworkBackendApp.userProfile.following2">Following 2</Translate>
-          </dt>
-          <dd>
-            {userProfileEntity.following2s
-              ? userProfileEntity.following2s.map((val, i) => (
-                  <span key={val.id}>
-                    <a>{val.id}</a>
-                    {userProfileEntity.following2s && i === userProfileEntity.following2s.length - 1 ? '' : ', '}
-                  </span>
-                ))
-              : null}
-          </dd>
         </dl>
         <Button tag={Link} to="/user-profile" replace color="info">
           <FontAwesomeIcon icon="arrow-left" />{' '}

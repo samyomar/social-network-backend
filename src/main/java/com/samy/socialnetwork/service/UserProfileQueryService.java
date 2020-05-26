@@ -123,14 +123,6 @@ public class UserProfileQueryService extends QueryService<UserProfile> {
                 specification = specification.and(buildSpecification(criteria.getPhotosId(),
                     root -> root.join(UserProfile_.photos, JoinType.LEFT).get(ProfilePhotos_.id)));
             }
-            if (criteria.getFollowing2Id() != null) {
-                specification = specification.and(buildSpecification(criteria.getFollowing2Id(),
-                    root -> root.join(UserProfile_.following2s, JoinType.LEFT).get(UserProfile_.id)));
-            }
-            if (criteria.getFollower2Id() != null) {
-                specification = specification.and(buildSpecification(criteria.getFollower2Id(),
-                    root -> root.join(UserProfile_.follower2s, JoinType.LEFT).get(UserProfile_.id)));
-            }
         }
         return specification;
     }

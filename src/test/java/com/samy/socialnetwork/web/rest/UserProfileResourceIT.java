@@ -6,7 +6,6 @@ import com.samy.socialnetwork.domain.User;
 import com.samy.socialnetwork.domain.Follow;
 import com.samy.socialnetwork.domain.Post;
 import com.samy.socialnetwork.domain.ProfilePhotos;
-import com.samy.socialnetwork.domain.UserProfile;
 import com.samy.socialnetwork.repository.UserProfileRepository;
 import com.samy.socialnetwork.service.UserProfileService;
 import com.samy.socialnetwork.service.dto.UserProfileCriteria;
@@ -14,25 +13,18 @@ import com.samy.socialnetwork.service.UserProfileQueryService;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;
-import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -42,7 +34,6 @@ import com.samy.socialnetwork.domain.enumeration.Language;
  * Integration tests for the {@link UserProfileResource} REST controller.
  */
 @SpringBootTest(classes = SocialNetworkBackendApp.class)
-@ExtendWith(MockitoExtension.class)
 @AutoConfigureMockMvc
 @WithMockUser
 public class UserProfileResourceIT {
@@ -68,12 +59,6 @@ public class UserProfileResourceIT {
 
     @Autowired
     private UserProfileRepository userProfileRepository;
-
-    @Mock
-    private UserProfileRepository userProfileRepositoryMock;
-
-    @Mock
-    private UserProfileService userProfileServiceMock;
 
     @Autowired
     private UserProfileService userProfileService;
@@ -293,26 +278,6 @@ public class UserProfileResourceIT {
             .andExpect(jsonPath("$.[*].nativeLang").value(hasItem(DEFAULT_NATIVE_LANG.toString())));
     }
     
-    @SuppressWarnings({"unchecked"})
-    public void getAllUserProfilesWithEagerRelationshipsIsEnabled() throws Exception {
-        when(userProfileServiceMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
-
-        restUserProfileMockMvc.perform(get("/api/user-profiles?eagerload=true"))
-            .andExpect(status().isOk());
-
-        verify(userProfileServiceMock, times(1)).findAllWithEagerRelationships(any());
-    }
-
-    @SuppressWarnings({"unchecked"})
-    public void getAllUserProfilesWithEagerRelationshipsIsNotEnabled() throws Exception {
-        when(userProfileServiceMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
-
-        restUserProfileMockMvc.perform(get("/api/user-profiles?eagerload=true"))
-            .andExpect(status().isOk());
-
-        verify(userProfileServiceMock, times(1)).findAllWithEagerRelationships(any());
-    }
-
     @Test
     @Transactional
     public void getUserProfile() throws Exception {
@@ -888,46 +853,6 @@ public class UserProfileResourceIT {
 
         // Get all the userProfileList where photos equals to photosId + 1
         defaultUserProfileShouldNotBeFound("photosId.equals=" + (photosId + 1));
-    }
-
-
-    @Test
-    @Transactional
-    public void getAllUserProfilesByFollowing2IsEqualToSomething() throws Exception {
-        // Initialize the database
-        userProfileRepository.saveAndFlush(userProfile);
-        UserProfile following2 = UserProfileResourceIT.createEntity(em);
-        em.persist(following2);
-        em.flush();
-        userProfile.addFollowing2(following2);
-        userProfileRepository.saveAndFlush(userProfile);
-        Long following2Id = following2.getId();
-
-        // Get all the userProfileList where following2 equals to following2Id
-        defaultUserProfileShouldBeFound("following2Id.equals=" + following2Id);
-
-        // Get all the userProfileList where following2 equals to following2Id + 1
-        defaultUserProfileShouldNotBeFound("following2Id.equals=" + (following2Id + 1));
-    }
-
-
-    @Test
-    @Transactional
-    public void getAllUserProfilesByFollower2IsEqualToSomething() throws Exception {
-        // Initialize the database
-        userProfileRepository.saveAndFlush(userProfile);
-        UserProfile follower2 = UserProfileResourceIT.createEntity(em);
-        em.persist(follower2);
-        em.flush();
-        userProfile.addFollower2(follower2);
-        userProfileRepository.saveAndFlush(userProfile);
-        Long follower2Id = follower2.getId();
-
-        // Get all the userProfileList where follower2 equals to follower2Id
-        defaultUserProfileShouldBeFound("follower2Id.equals=" + follower2Id);
-
-        // Get all the userProfileList where follower2 equals to follower2Id + 1
-        defaultUserProfileShouldNotBeFound("follower2Id.equals=" + (follower2Id + 1));
     }
 
     /**

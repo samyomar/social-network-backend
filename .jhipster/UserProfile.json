@@ -67,22 +67,6 @@
       "otherEntityName": "profilePhotos",
       "otherEntityRelationshipName": "userProfile",
       "relationshipName": "photos"
-    },
-    {
-      "relationshipType": "many-to-many",
-      "otherEntityName": "userProfile",
-      "otherEntityRelationshipName": "follower2",
-      "relationshipName": "following2",
-      "otherEntityField": "id",
-      "ownerSide": true
-    },
-    {
-      "relationshipType": "many-to-many",
-      "otherEntityName": "userProfile",
-      "otherEntityRelationshipName": "following2",
-      "relationshipName": "follower2",
-      "otherEntityField": "id",
-      "ownerSide": false
     }
   ],
   "changelogDate": "20200525224904",

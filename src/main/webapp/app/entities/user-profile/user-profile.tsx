@@ -57,9 +57,6 @@ export const UserProfile = (props: IUserProfileProps) => {
                 <th>
                   <Translate contentKey="socialNetworkBackendApp.userProfile.user">User</Translate>
                 </th>
-                <th>
-                  <Translate contentKey="socialNetworkBackendApp.userProfile.following2">Following 2</Translate>
-                </th>
                 <th />
               </tr>
             </thead>
@@ -82,16 +79,6 @@ export const UserProfile = (props: IUserProfileProps) => {
                     <Translate contentKey={`socialNetworkBackendApp.Language.${userProfile.nativeLang}`} />
                   </td>
                   <td>{userProfile.user ? userProfile.user.id : ''}</td>
-                  <td>
-                    {userProfile.following2s
-                      ? userProfile.following2s.map((val, j) => (
-                          <span key={j}>
-                            <Link to={`user-profile/${val.id}`}>{val.id}</Link>
-                            {j === userProfile.following2s.length - 1 ? '' : ', '}
-                          </span>
-                        ))
-                      : null}
-                  </td>
                   <td className="text-right">
                     <div className="btn-group flex-btn-group-container">
                       <Button tag={Link} to={`${match.url}/${userProfile.id}`} color="info" size="sm">

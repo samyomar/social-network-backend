@@ -10,20 +10,18 @@ application {
     prodDatabaseType mysql,
     buildTool maven,
     authenticationType jwt,
-    clientFramework react,
-    authenticationType jwt
-	
+    clientFramework react
   }
   //skipClient true
   // filter entities here
-  entities * 
+  entities *
 }
 
 entity UserProfile {
   firstName String required,
   lastName String,
-  age Integer required min(12), 
-  gender Gender required, 
+  age Integer required min(12),
+  gender Gender required,
   country String required,
   nativeLang Language required
 }
@@ -36,12 +34,13 @@ entity Post {
 entity Follow{
   followDate Instant required
 }
-  
-entity ProfilePhotos (profile_photos) { 
+
+entity ProfilePhotos (profile_photos) {
   image ImageBlob required,
   uploadedDate Instant required,
-  title String
-}  
+  title String,
+  isMain Boolean
+}
 
 enum Gender {
     MALE, FEMALE, OTHER
@@ -51,7 +50,7 @@ enum Language {
     FRENCH, ENGLISH, SPANISH
 }
 
-relationship OneToOne { 
+relationship OneToOne {
 UserProfile{user required} to User
 }
 //  with jpaDerivedIdentifier
@@ -70,14 +69,14 @@ relationship OneToMany {
   UserProfile{photos} to ProfilePhotos{userProfile required}
 }
 
-relationship ManyToMany {
-  UserProfile{following2} to UserProfile{follower2}
-}
+//relationship ManyToMany {
+ // UserProfile{following2} to UserProfile{follower2}
+//}
 
 
-// Set service options to all except few
-//service * with serviceImpl
+
 service * with serviceClass
 filter *
 //skipClient true
-
+// Set service options to all except few
+//service * with serviceImpl

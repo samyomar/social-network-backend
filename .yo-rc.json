@@ -37,7 +37,18 @@
     "entitySuffix": "",
     "dtoSuffix": "DTO",
     "otherModules": [],
-    "blueprints": []
+    "blueprints": [],
+    "gcpProjectId": "socialnetwork1-278414",
+    "gcpCloudSqlInstanceName": "",
+    "gcpCloudSqlUserName": "root",
+    "gcpCloudSqlDatabaseName": "match",
+    "gaeServiceName": "social-network-backend",
+    "gaeLocation": "europe-west6",
+    "gaeInstanceClass": "F1",
+    "gaeScalingType": "automatic",
+    "gaeMinInstances": "1",
+    "gaeMaxInstances": "0",
+    "gaeCloudSQLInstanceNeeded": "Y"
   },
   "entities": ["UserProfile", "Post", "Follow", "ProfilePhotos"]
 }

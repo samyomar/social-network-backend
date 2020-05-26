@@ -1,6 +1,5 @@
 package com.samy.socialnetwork.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -75,18 +74,6 @@ public class UserProfile implements Serializable {
     @OneToMany(mappedBy = "userProfile")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     private Set<ProfilePhotos> photos = new HashSet<>();
-
-    @ManyToMany
-    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JoinTable(name = "user_profile_following2",
-               joinColumns = @JoinColumn(name = "user_profile_id", referencedColumnName = "id"),
-               inverseJoinColumns = @JoinColumn(name = "following2_id", referencedColumnName = "id"))
-    private Set<UserProfile> following2s = new HashSet<>();
-
-    @ManyToMany(mappedBy = "following2s")
-    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JsonIgnore
-    private Set<UserProfile> follower2s = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -286,56 +273,6 @@ public class UserProfile implements Serializable {
 
     public void setPhotos(Set<ProfilePhotos> profilePhotos) {
         this.photos = profilePhotos;
-    }
-
-    public Set<UserProfile> getFollowing2s() {
-        return following2s;
-    }
-
-    public UserProfile following2s(Set<UserProfile> userProfiles) {
-        this.following2s = userProfiles;
-        return this;
-    }
-
-    public UserProfile addFollowing2(UserProfile userProfile) {
-        this.following2s.add(userProfile);
-        userProfile.getFollower2s().add(this);
-        return this;
-    }
-
-    public UserProfile removeFollowing2(UserProfile userProfile) {
-        this.following2s.remove(userProfile);
-        userProfile.getFollower2s().remove(this);
-        return this;
-    }
-
-    public void setFollowing2s(Set<UserProfile> userProfiles) {
-        this.following2s = userProfiles;
-    }
-
-    public Set<UserProfile> getFollower2s() {
-        return follower2s;
-    }
-
-    public UserProfile follower2s(Set<UserProfile> userProfiles) {
-        this.follower2s = userProfiles;
-        return this;
-    }
-
-    public UserProfile addFollower2(UserProfile userProfile) {
-        this.follower2s.add(userProfile);
-        userProfile.getFollowing2s().add(this);
-        return this;
-    }
-
-    public UserProfile removeFollower2(UserProfile userProfile) {
-        this.follower2s.remove(userProfile);
-        userProfile.getFollowing2s().remove(this);
-        return this;
-    }
-
-    public void setFollower2s(Set<UserProfile> userProfiles) {
-        this.follower2s = userProfiles;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 

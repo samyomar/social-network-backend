@@ -53,8 +53,6 @@ public class CacheConfiguration {
             createCache(cm, com.samy.socialnetwork.domain.UserProfile.class.getName() + ".followers");
             createCache(cm, com.samy.socialnetwork.domain.UserProfile.class.getName() + ".posts");
             createCache(cm, com.samy.socialnetwork.domain.UserProfile.class.getName() + ".photos");
-            createCache(cm, com.samy.socialnetwork.domain.UserProfile.class.getName() + ".following2s");
-            createCache(cm, com.samy.socialnetwork.domain.UserProfile.class.getName() + ".follower2s");
             createCache(cm, com.samy.socialnetwork.domain.Post.class.getName());
             createCache(cm, com.samy.socialnetwork.domain.Follow.class.getName());
             createCache(cm, com.samy.socialnetwork.domain.ProfilePhotos.class.getName());

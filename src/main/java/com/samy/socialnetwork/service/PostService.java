@@ -2,6 +2,8 @@ package com.samy.socialnetwork.service;
 
 import com.samy.socialnetwork.domain.Post;
 import com.samy.socialnetwork.repository.PostRepository;
+import com.samy.socialnetwork.security.AuthoritiesConstants;
+import com.samy.socialnetwork.security.SecurityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -45,7 +47,11 @@ public class PostService {
     @Transactional(readOnly = true)
     public List<Post> findAll() {
         log.debug("Request to get all Posts");
-        return postRepository.findAll();
+        if (SecurityUtils.isCurrentUserInRole(AuthoritiesConstants.ADMIN)) {
+          return postRepository.findAll();
+        } else {
+            return postRepository.findAllByUserProfileUserLogin(SecurityUtils.getCurrentUserLogin().get());
+        }
     }
 
 

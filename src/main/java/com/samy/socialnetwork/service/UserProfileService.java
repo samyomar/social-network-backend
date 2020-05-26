@@ -5,8 +5,6 @@ import com.samy.socialnetwork.repository.UserProfileRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -47,18 +45,9 @@ public class UserProfileService {
     @Transactional(readOnly = true)
     public List<UserProfile> findAll() {
         log.debug("Request to get all UserProfiles");
-        return userProfileRepository.findAllWithEagerRelationships();
+        return userProfileRepository.findAll();
     }
 
-
-    /**
-     * Get all the userProfiles with eager load of many-to-many relationships.
-     *
-     * @return the list of entities.
-     */
-    public Page<UserProfile> findAllWithEagerRelationships(Pageable pageable) {
-        return userProfileRepository.findAllWithEagerRelationships(pageable);
-    }
 
     /**
      * Get one userProfile by id.
@@ -69,7 +58,7 @@ public class UserProfileService {
     @Transactional(readOnly = true)
     public Optional<UserProfile> findOne(Long id) {
         log.debug("Request to get UserProfile : {}", id);
-        return userProfileRepository.findOneWithEagerRelationships(id);
+        return userProfileRepository.findById(id);
     }
 
     /**
